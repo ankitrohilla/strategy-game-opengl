@@ -1,0 +1,10 @@
+Screen width and height in init first call 0 0hiiiiiiiiiiiiiiiii sms and m is yesB    18
+
+
+ x & y are  = 896  644
+Host  1920
+
+
+Screen width and height in init first call 1920 1080Waiting for connections...pthread cancelled 
+Screen width and height in init first call 1920 1080players : 1 
+Screen width and height in init first call 1920 1080

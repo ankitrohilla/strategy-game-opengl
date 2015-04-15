@@ -1,0 +1,114 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int noOfVertices, noOfEdges;
+int u, v;
+vector<int> stack;
+
+// for traversal
+enum state {
+    UNVISITED,
+    STACKED,
+    PROCESSED
+};
+
+class vertex
+{
+    public:
+    state myState;
+    int id;
+    vector<int> adjList;    
+    vertex( int id ) {
+        this->myState = UNVISITED;
+        this->id = id;
+    }
+    
+    void printAdjList() {
+        cout << "\n";
+        for( int i = 0; i < adjList.size(); i++ ) {
+            cout << " " << adjList.at( i );
+        }
+    }
+};
+
+vector<vertex> vertices;
+
+// returns false if 3 nodes accessible by i
+bool DFS( ) {
+    
+    int currentNode;
+    
+    while( stack.size() ) {
+        currentNode = stack.at( stack.size()-1 );
+        stack.pop_back();
+        
+    }
+}
+
+// returns any unvisited node id
+// else returns -1
+int unvisitedNodeIndex() {
+    for( int i = 0; i < noOfVertices; i++ ) {
+        if( vertices.at(i).myState == UNVISITED )
+            return i;
+    }
+    return -1;
+}
+
+// returns true if forest at present is having trees of even vertices
+bool isCompatible() {
+    
+    // all nodes are currently unvisited
+    for( int i = 1; i <= noOfVertices; i++ ) {
+        vertices.at( i ).myState = UNVISITED;
+    }
+    
+    // call DFS from any unvisited node
+    // if all nodes have been visited and there is no unvisited node
+    // return true
+    while( unvisitedNodeIndex() != -1 ) {
+        stack.clear();
+        stack.push_back( unvisitedNodeIndex() );
+        // returns false if the number of vertices is odd when traversed through this node
+        if( !DFS( unvisitedNodeIndex() ) )
+            return false;
+    }
+    return true;
+    
+}
+
+int main() {
+
+    cin >> noOfVertices >> noOfEdges;
+    
+    // stores vertex with ID 0, of no use practically
+    vertex* startVertex = new vertex( 0 );
+    vertices.push_back( *startVertex );
+    
+    for( int i = 1; i <= noOfVertices; i++ ) {
+        vertex* tempVertex = new vertex( i );
+        vertices.push_back( *tempVertex );
+    }
+    
+    for( int i = 1; i <= noOfEdges; i++ ) {
+        cin >> u >> v;
+        vertices.at( u ).adjList.push_back( v );
+        vertices.at( v ).adjList.push_back( u );
+    }
+    
+    for( int i = 1; i <= noOfVertices; i++ ) {
+        for( int j = 0; j < vertices.at(i).adjList.size(); j++ ) {
+            
+        }        
+    }
+    
+
+    
+    
+    return 0;
+}
+
